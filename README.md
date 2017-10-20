@@ -15,16 +15,14 @@ Variables with defaults :
 mandrill_api_version: 1.0
 mandrill_api_base_url: https://mandrillapp.com/api/{{mandrill_api_version}}
 mandrill_api_inbounds_url: "{{ mandrill_api_base_url }}/inbound"
-mandrill_api_routes_url: "{{ mandrill_api_base_url }}/route"
 mandrill_api_output_format: .json
-mandrill_inbound_key_operation: present
+mandrill_inbound_key_operation: present # absent for delete and check to check with mandrill
 mandrill_inbound_operation: add-domain
 mandrill_inbounds_request_url: "{{ mandrill_api_inbounds_url }}/{{ mandrill_inbound_operation }}{{ mandrill_api_output_format }}"
 mandrill_routes_operation: add-route
-mandrill_routes_request_url: "{{ mandrill_api_routes_url }}/{{ mandrill_operation }}{{ mandrill_api_output_format }}"
+mandrill_routes_request_url: "{{ mandrill_api_inbounds_url }}/{{ mandrill_routes_operation }}{{ mandrill_api_output_format }}"
 
 Other variables :
-
 mandrill_api_key: myApiKey # Required
 mandrill_inbound_domain: example.com # the domain for which you want to create a route
 mandrill_route_pattern: * # the pattern you want to use for a route
