@@ -23,7 +23,7 @@ mandrill_request_url: "{{ mandrill_api_routes_url }}/{{ mandrill_operation }}{{ 
 Other variables :
 
 mandrill_api_key: myApiKey # Required
-mandrill_route_domain: *@example.com # the domain for which you want to create a route
+mandrill_route_domain: example.com # the domain for which you want to create a route
 ```
 
 Dependencies
@@ -41,7 +41,7 @@ Creating a domain route:
         - role: mandrill_routes
           vars:
             mandrill_api_key: yourApiKey
-            mandrill_route_domain: *@your_company-reply.com
+            mandrill_route_domain: your_company-reply.com
 
 
 Removing a domain route
@@ -52,7 +52,7 @@ Removing a domain route
           vars:
             mandrill_route_operation: absent
             mandrill_api_key: yourApiKey
-            mandrill_route_domain: *@your_company-reply.com
+            mandrill_route_domain: your_company-reply.com
 
 
 Checking the domain
@@ -63,7 +63,7 @@ Checking the domain
           vars:
             mandrill_route_operation: check
             mandrill_api_key: yourApiKey
-            mandrill_route_domain: *@your_company-reply.com
+            mandrill_route_domain: your_company-reply.com
 
 License
 -------
