@@ -5,5 +5,5 @@
 - include: check_domain.yml
   when: mandrill_route_operation == 'check'
 
-- include: remove_domain.yml
+- include: delete_domain.yml
   when: mandrill_route_operation == 'absent'
