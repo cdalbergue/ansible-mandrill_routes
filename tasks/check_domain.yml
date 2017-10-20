@@ -1,10 +1,10 @@
 ---
 - uri:
-    url: "{{ mandrill_request_url }}"
+    url: "{{ mandrill_inbounds_request_url }}"
     method: POST
     body:
       key: "{{ mandrill_api_key }}"
-      domain: "{{ mandrill_route_domain }}"
+      domain: "{{ mandrill_inbound_domain }}"
     body_format: json
   vars:
     mandrill_operation: check-domain

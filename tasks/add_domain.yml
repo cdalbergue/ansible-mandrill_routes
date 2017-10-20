@@ -1,8 +1,19 @@
 ---
 - uri:
-    url: "{{ mandrill_request_url }}"
+    url: "{{ mandrill_inbounds_request_url }}"
     method: POST
     body:
       key: "{{ mandrill_api_key }}"
-      domain: "{{ mandrill_route_domain }}"
+      domain: "{{ mandrill_inbound_domain }}"
     body_format: json
+
+- uri:
+    url: "{{ mandrill_routes_request_url }}"
+    method: POST
+    body:
+      key: "{{ mandrill_api_key }}"
+      domain: "{{ mandrill_inbound_domain }}"
+      pattern: "{{ mandrill_route_pattern }}"
+      url: "{{ mandrill_route_url }}"
+    body_format: json
+    when: mandrill_route_pattern is defined and mandrill_route_url is defined
