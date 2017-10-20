@@ -1,31 +1,69 @@
-Role Name
+Ansible Mandrill Routes
 =========
-
-A brief description of the role goes here.
+This role helps you create mandrill inbound routes from your account
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```
+Variables with defaults :
+---
+mandrill_api_version: 1.0
+mandrill_api_routes_url: https://mandrillapp.com/api/{{mandrill_api_version}}/inbounds
+mandrill_api_output_format: .json
+mandrill_route_operation: present # present creates a domain, absent deletes a domain and check checks a domain
+mandrill_operation: add-domain # intentionnaly set as default
+mandrill_request_url: "{{ mandrill_api_routes_url }}/{{ mandrill_operation }}{{ mandrill_api_output_format }}"
+
+Other variables :
+
+mandrill_api_key: myApiKey # Required
+mandrill_route_domain: *@example.com # the domain for which you want to create a route
+```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Creating a domain route:
 
-    - hosts: servers
+    - hosts: localhost
       roles:
-         - { role: username.rolename, x: 42 }
+        - role: mandrill_routes
+          vars:
+            mandrill_api_key: yourApiKey
+            mandrill_route_domain: *@your_company-reply.com
+
+
+Removing a domain route
+
+    - hosts: localhost
+      roles:
+        - role: mandrill_routes
+          vars:
+            mandrill_route_operation: absent
+            mandrill_api_key: yourApiKey
+            mandrill_route_domain: *@your_company-reply.com
+
+
+Checking the domain
+
+    - hosts: localhost
+      roles:
+        - role: mandrill_routes
+          vars:
+            mandrill_route_operation: check
+            mandrill_api_key: yourApiKey
+            mandrill_route_domain: *@your_company-reply.com
 
 License
 -------
@@ -35,5 +73,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
-# ansible-mandrill_routes
+[github.com/cdalbergue](https://github.com/cdalbergue)

@@ -1,2 +1,7 @@
 ---
-# defaults file for cdalbergue.mandrill_routes
+mandrill_api_version: 1.0
+mandrill_api_routes_url: https://mandrillapp.com/api/{{mandrill_api_version}}/inbounds
+mandrill_api_output_format: .json
+mandrill_route_operation: present
+mandrill_operation: add-domain
+mandrill_request_url: "{{ mandrill_api_routes_url }}/{{ mandrill_operation }}{{ mandrill_api_output_format }}"
