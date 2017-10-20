@@ -1,6 +1,6 @@
 ---
 mandrill_api_version: 1.0
-mandrill_api_routes_url: https://mandrillapp.com/api/{{mandrill_api_version}}/inbounds
+mandrill_api_routes_url: https://mandrillapp.com/api/{{mandrill_api_version}}/inbound
 mandrill_api_output_format: .json
 mandrill_route_operation: present
 mandrill_operation: add-domain
