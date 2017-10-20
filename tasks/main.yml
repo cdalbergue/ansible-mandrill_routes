@@ -2,7 +2,7 @@
 - include: add_domain.yml
   when: mandrill_route_operation == 'present'
 
-- includ: check_domain.yml
+- include: check_domain.yml
   when: mandrill_route_operation == 'check'
 
 - include: remove_domain.yml
