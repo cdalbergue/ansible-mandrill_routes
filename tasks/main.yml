@@ -1,9 +1,9 @@
 ---
 - include: add_domain.yml
-  when: mandrill_route_operation == 'present'
+  when: mandrill_inbound_key_operation == 'present'
 
 - include: check_domain.yml
-  when: mandrill_route_operation == 'check'
+  when: mandrill_inbound_key_operation == 'check'
 
 - include: delete_domain.yml
-  when: mandrill_route_operation == 'absent'
+  when: mandrill_inbound_key_operation == 'absent'
