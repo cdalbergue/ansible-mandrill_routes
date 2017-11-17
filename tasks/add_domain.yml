@@ -7,6 +7,22 @@
       domain: "{{ mandrill_inbound_domain }}"
     body_format: json
 
+- name: get existing routes
+  uri:
+    url: "{{ mandrill_routes_request_url }}"
+    method: GET
+    body:
+      key: "{{ mandrill_api_key }}"
+      domain: "{{ mandrill_inbound_domain }}"
+    body_format: json
+  register: result
+  when: mandrill_route_pattern is defined and mandrill_route_url is defined
+
+- set_fact:
+    new_route: no
+  when: item.pattern == mandrill_route_pattern and item.url == mandrill_route_url
+  with_items: "{{ result.json }}"
+
 - uri:
     url: "{{ mandrill_routes_request_url }}"
     method: POST
@@ -16,4 +32,4 @@
       pattern: "{{ mandrill_route_pattern }}"
       url: "{{ mandrill_route_url }}"
     body_format: json
-    when: mandrill_route_pattern is defined and mandrill_route_url is defined
+    when: mandrill_route_pattern is defined and mandrill_route_url is defined and new_route
