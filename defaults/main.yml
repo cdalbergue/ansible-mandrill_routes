@@ -12,4 +12,6 @@ mandrill_inbounds_request_url: "{{ mandrill_api_inbounds_url }}/{{ mandrill_inbo
 mandrill_routes_operation: add-route
 mandrill_routes_request_url: "{{ mandrill_api_inbounds_url }}/{{ mandrill_routes_operation }}{{ mandrill_api_output_format }}"
 
+mandrill_get_routes_url: "{{ mandrill_api_inbounds_url }}/routes{{ mandrill_api_output_format }}"
+
 new_route: yes
