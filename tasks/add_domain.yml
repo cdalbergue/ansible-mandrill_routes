@@ -10,7 +10,7 @@
 
 - name: get existing routes
   uri:
-    url: "{{ mandrill_routes_request_url }}"
+    url: "{{ mandrill_get_routes_url }}"
     method: GET
     body:
       key: "{{ mandrill_api_key }}"
@@ -35,4 +35,4 @@
       pattern: "{{ mandrill_route_pattern }}"
       url: "{{ mandrill_route_url }}"
     body_format: json
-    when: mandrill_route_pattern is defined and mandrill_route_url is defined and new_route is true
+  when: mandrill_route_pattern is defined and mandrill_route_url is defined and new_route
